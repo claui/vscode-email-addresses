@@ -1,0 +1,41 @@
+{
+  "name": "email-addresses",
+  "version": "0.1.0-snapshot",
+  "publisher": "claui",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "license": "SEE LICENSE IN README.md",
+  "displayName": "Email addresses",
+  "description": "Syntax highlighting for RFC 5322 email addresses",
+  "categories": [],
+  "keywords": [],
+  "preview": false,
+  "main": "extension.js",
+  "contributes": {
+    "grammars": [
+      {
+        "language": "git-mailmap",
+        "scopeName": "text.git-mailmap",
+        "path": "syntaxes/gitMailmap.tmLanguage.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "git-mailmap",
+        "aliases": [
+          "Git Mailmap"
+        ],
+        "filenamePatterns": [
+          ".mailmap"
+        ],
+        "configuration": "languages/git-mailmap.language-configuration.json"
+      }
+    ]
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [],
+  "repository": "github:claui/vscode-email-addresses"
+}

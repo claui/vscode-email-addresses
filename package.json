@@ -1,0 +1,39 @@
+{
+  "name": "vscode-email-addresses",
+  "license": "SEE LICENSE IN README.md",
+  "engines": {
+    "node": "^16.0.0"
+  },
+  "comments": {
+    "devDependencies": {
+      "@yarnpkg/sdks": "Replace the <=2.x || ^3.0.0 restriction with the latest stable version once a stable 3.x release is out."
+    },
+    "resolutions": {
+      "@vscode/vsce": "Private patch for Yarn v3 compatibility. Keep in sync with the version of the `@vscode/vsce` dependency."
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@yarnpkg/sdks": "<=2.x || ^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "resolutions": {
+    "@vscode/vsce@^2.20.1": "patch:@vscode/vsce@npm:2.20.1#./.yarn/patches/@vscode-vsce-npm-2.20.1-c171711221.patch"
+  },
+  "scripts": {
+    "clean": "yarn workspace extension clean",
+    "clean-install": "yarn install && git checkout -- .vscode/settings.json '.yarn/*/LICENSE'",
+    "compile": "yarn workspace extension compile",
+    "lint": "yarn workspace extension lint",
+    "package": "yarn workspace extension package",
+    "postinstall": "yarn sdks vscode",
+    "upgrade-all": "printf >&2 '%s\\n\\t%s\\n' 'Run the following command line manually:' 'yarn set version stable && yarn install && yarn upgrade-packages' && false",
+    "upgrade-lockfile": "yarn up -R '**' && yarn clean-install",
+    "upgrade-packages": "yarn up '**' '@types/node@<=16.x' '@types/vscode@=1.77' '@yarnpkg/sdks@<=2.x || ^3.0.0' && yarn up -R '**' && yarn clean-install",
+    "upgrade-yarn-itself": "printf >&2 '%s\\n\\t%s\\n' 'Run the following command line manually:' 'yarn set version stable && yarn install && yarn clean-install' && false"
+  },
+  "workspaces": [
+    "extension"
+  ],
+  "packageManager": "yarn@3.6.1"
+}

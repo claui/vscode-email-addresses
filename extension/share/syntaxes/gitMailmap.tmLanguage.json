@@ -1,0 +1,77 @@
+{
+  "name": "Git Mailmap",
+  "scopeName": "text.git-mailmap",
+  "uuid": "6fadc7aa-20a5-433d-94ca-b70e4d1fd30d",
+  "patterns": [
+    {
+      "comment": "Line comments take precedence before everything else",
+      "include": "#comment"
+    },
+    {
+      "comment": "A mailmap entry, which is a line in a `.mailmap` file",
+      "include": "#entry"
+    }
+  ],
+  "repository": {
+    "angled-address": {
+      "patterns": [
+        {
+          "match": "(<)([^>\\s]+)(>)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.git-mailmap"
+            },
+            "2": {
+              "name": "constant.other.email.git-mailmap"
+            },
+            "3": {
+              "name": "punctuation.definition.tag.end.git-mailmap"
+            }
+          }
+        },
+        {
+          "match": ".*",
+          "name": "invalid.illegal.angled-address"
+        }
+      ]
+    },
+    "comment": {
+      "match": "((#).*)$",
+      "captures": {
+        "1": {
+          "name": "comment.line.git-mailmap"
+        },
+        "2": {
+          "name": "punctuation.definition.comment.git-mailmap"
+        }
+      }
+    },
+    "entry": {
+      "match": "([^<>]+)(?:\\s+(\\S+)(?:\\s+([^<>]+))?)?\\s+(\\S+)$",
+      "captures": {
+        "1": {
+          "name": "string.unquoted.proper-name.git-mailmap"
+        },
+        "2": {
+          "name": "meta.section.angled.address.proper",
+          "patterns": [
+            {
+              "include": "#angled-address"
+            }
+          ]
+        },
+        "3": {
+          "name": "string.unquoted.commit-name.git-mailmap"
+        },
+        "4": {
+          "name": "meta.section.angled.address.commit",
+          "patterns": [
+            {
+              "include": "#angled-address"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
